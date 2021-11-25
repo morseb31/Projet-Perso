@@ -1,7 +1,20 @@
 import tkinter
 from tkinter import ttk
+from datetime import date
+import multiprocessing
+from queue import Empty, Full
+import webbrowser
+from Motor import *
+from soundalert import *
+from multiprocessing import *
+import os
+from PIL import *
+from queue import *
+import matplotlib.pyplot as plt
+import re
 
-    
+#-----------------------------------------------------------------------------------------------------
+# functions   
 def avant():
     page1.pack_forget()
     bg_label2 = tkinter.Label(page2, image=bg_img)
@@ -15,13 +28,164 @@ def avant():
 def arriere():
     page2.pack_forget()
     endbt.config(text= "Terminer", command=avant)
-    page1.pack() 
+    page1.pack()
+
+def feed():
+    while True:
+        now = datetime.now()
+        hm = now.strftime("%Y,%H")
+
+        if combo1.get() + combo2.get() == hm:
+            launch_motor()
+
+        if combo3.get() + combo4.get() == hm:
+            launch_motor()
+
+        if combo5.get() + combo6.get() == hm:
+            launch_motor()
+
+def Message():
+    user_mail = e3.get()
+    mail.ehlo()
+    mail.starttls()
+    mail.login('raspicodeuser123@gmail.com', 'eczvylxwcdzxorkq')
+    mail.sendmail('raspicodeuser123@gmail.com',user_mail,content)
+    mail.close()
+
+def stream():
+    webbrowser.open("http://192.168.2.68:5000/")
+
+def alert_status(compte, lifo):
+
+    now = datetime.now()
+
+    obj_int = scale1.get()
+
+    dt1 = now.strftime("%B %d, %Y %H")
+
+    print(dt1)
+
+    while True:
+
+
+        if lifo.empty() == True:
+
+            time.sleep(0.005)
+
+            
+        if lifo.empty() == False:
+
+            print("not empty")
+
+            obj_int = e1.get()
+
+            item = int(lifo.get(compte)) 
+
+            item2 = int(obj_int)
+            
+            if item2 > item:
+
+                print("losing")
+
+            
+            if item - item2 == 0:
+
+                print("tie")
+
+            
+            if item + 0 > item2:
+
+                print("oh no")
+
+                Message()
+
+                return
+
+def diagram():
+
+    patron1 = re.compile("1")
+
+    patron2 = re.compile("2")
+
+    patron3 = re.compile("3")
+
+    patron4 = re.compile("4")
+
+    one = 0
+
+    two = 0
+
+    three = 0
+
+    four = 0
+
+
+    for line in open("numbers"):
+        for match in re.finditer(patron1, line):
+            one += 1
+
+    for line in open("numbers"):
+        for match in re.finditer(patron2, line):
+            two += 1
+
+    for line in open("numbers"):
+        for match in re.finditer(patron3, line):
+            three += 1
+
+    for line in open("numbers"):
+        for match in re.finditer(patron4, line):
+            four += 1
+
+    plt.plot([one, two, three, four])
+    plt.ylabel('some numbers')
+    plt.show()
+
+#-----------------------------------------------------------------------------------------------------
+#mutliprocess
+def proc1():
+    if __name__ == '__main__':
+        p1 = Process(target=feed)
+        p1.start()
+
+def proc2():
+    if __name__ == '__main__':
+        p2 = Process(target=launch_alert, args=(compte, lifo))
+        p2.start()
+
+def proc3():
+    if __name__ == '__main__':
+        p3 = Process(target=stream)
+        p3.start()
+
+def proc4():
+    if __name__ == '__main__':
+        p4 = Process(target=alert_status, args=(compte, lifo))   
+
+        p4.start()
+
+#-----------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
 
     root = tkinter.Tk()
 
     root.attributes("-fullscreen", True)
+
+    manager = MyManager()
+
+    manager.start()
+    
+    compte = int(compte)
+
+    lifo = manager.LifoQueue()
+
+    q1 = queue.Queue()
+
+    item = 0
+
+    item2 = 0
+
+    mail = smtplib.SMTP('smtp.gmail.com',587)
 #---------------------------------------------------------------
     #pages
     page1 = tkinter.Frame(root)
@@ -70,10 +234,21 @@ if __name__ == "__main__":
 
 #---------------------------------------------------------------
     #buttons
-
     endbt = tkinter.Button(frame9, text="Termine", command=avant)
     endbt.pack()
 
+    #buttons for multiprocess
+    bt1 = tkinter.Button(text="Active le système de nutition", command=proc1)
+    #bt1.pack()
+
+    bt2 = tkinter.Button(text="Active le système de surveillance", command=proc2)
+    #bt1.pack()
+
+    bt3 = tkinter.Button(text="Montrer la diffusion camera", command=proc3)
+    #bt1.pack()
+
+    bt4 = tkinter.Button(text="Envoyer des notifications", command=proc4)
+    #bt1.pack()
 #---------------------------------------------------------------
     #labels
     tlb = tkinter.Label(frame1, text= "Bienvenue au SDSN!")

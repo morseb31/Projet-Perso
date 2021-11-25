@@ -56,10 +56,9 @@ def calc_distances2(file2):
         else:
             idx += 1
     return distances2
-
-print(calc_distances(file2))
-
+    
 if __name__=="__main__":
+
     calc_distances(file)
     calc_distances2(file2)
 
@@ -77,6 +76,9 @@ if __name__=="__main__":
 
     else:
         print("not less go")
+
+
+
 
     
     

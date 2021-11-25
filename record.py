@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 
-filename = "recorded2.wav"
+filename = "recorded6.wav"
 
 chunk = 1024
 
