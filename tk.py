@@ -1,15 +1,17 @@
+from multiprocessing.spawn import import_main_path
 import tkinter
 from tkinter import ttk
 from datetime import date
 import multiprocessing
 from queue import Empty, Full
+from typing_extensions import IntVar
 import webbrowser
 from Motor import *
 from soundalert import *
 from multiprocessing import *
 import os
-from PIL import *
 from queue import *
+import PIL
 import matplotlib.pyplot as plt
 import re
 
@@ -25,24 +27,55 @@ def avant():
     bg_label2.pack() 
     page2.pack()
 
+    frame10 = tkinter.Frame(page2)
+    frame10.place(relx=0.1, rely=0.3, relwidth=0.15, relheight=0.1)
+
+    frame11 = tkinter.Frame(page2)
+    frame11.place(relx=0.3, rely=0.3, relwidth=0.15, relheight=0.1)
+
+    frame12 = tkinter.Frame(page2)
+    frame12.place(relx=0.5, rely=0.3, relwidth=0.15, relheight=0.1)
+
+    frame13 = tkinter.Frame(page2)
+    frame13.place(relx=0.7, rely=0.3, relwidth=0.15, relheight=0.1)
+
+    frame14 = tkinter.Frame(page2)
+    frame14.place(relx=0.5, rely=0.5, relwidth=0.15, relheight=0.1)
+
+    bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
+    bt1.pack()
+
+    bt2 = tkinter.Button(frame11, text="Active le système de surveillance", command=proc2)
+    bt2.pack()
+
+    bt3 = tkinter.Button(frame12, text="Montrer la diffusion camera", command=proc3)
+    bt3.pack()
+
+    bt4 = tkinter.Button(frame13, text="Envoyer des notifications", command=proc4)
+    bt4.pack()
+
+    bt5 = tkinter.Button(frame14, text="Resumer de la journee", command=proc5)
+    bt5.pack()
+    
+
 def arriere():
     page2.pack_forget()
     endbt.config(text= "Terminer", command=avant)
     page1.pack()
 
 def feed():
-    while True:
-        now = datetime.now()
-        hm = now.strftime("%Y,%H")
+    #while True:
+        #now = datetime.now()
+        #hm = now.strftime("%Y,%H")
 
-        if combo1.get() + combo2.get() == hm:
-            launch_motor()
+        #if combo1.get() + combo2.get() == hm:
+    launch_motor()
 
-        if combo3.get() + combo4.get() == hm:
-            launch_motor()
+        #if combo3.get() + combo4.get() == hm:
+            #launch_motor()
 
-        if combo5.get() + combo6.get() == hm:
-            launch_motor()
+        #if combo5.get() + combo6.get() == hm:
+            #launch_motor()
 
 def Message():
     user_mail = e3.get()
@@ -77,7 +110,7 @@ def alert_status(compte, lifo):
 
             print("not empty")
 
-            obj_int = e1.get()
+            obj_int = scale1.get()
 
             item = int(lifo.get(compte)) 
 
@@ -103,15 +136,9 @@ def alert_status(compte, lifo):
 
 def diagram():
 
-    patron1 = re.compile("1")
+    patron1 = re.compile("19")
 
-    patron2 = re.compile("2")
-
-    patron3 = re.compile("3")
-
-    patron4 = re.compile("4")
-
-    one = 0
+    nineteen = 0
 
     two = 0
 
@@ -119,24 +146,11 @@ def diagram():
 
     four = 0
 
+    for line in open("sdsn.results"):
+        for match in re.match(patron1, line):
+            nineteen += 1
 
-    for line in open("numbers"):
-        for match in re.finditer(patron1, line):
-            one += 1
-
-    for line in open("numbers"):
-        for match in re.finditer(patron2, line):
-            two += 1
-
-    for line in open("numbers"):
-        for match in re.finditer(patron3, line):
-            three += 1
-
-    for line in open("numbers"):
-        for match in re.finditer(patron4, line):
-            four += 1
-
-    plt.plot([one, two, three, four])
+    plt.plot([two, three, four, nineteen])
     plt.ylabel('some numbers')
     plt.show()
 
@@ -163,13 +177,20 @@ def proc4():
 
         p4.start()
 
+
+def proc5():
+    if __name__ == '__main__':
+        p5 = Process(target=diagram)   
+
+        p5.start()
+
 #-----------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
 
     root = tkinter.Tk()
 
-    root.attributes("-fullscreen", True)
+    #root.attributes("-fullscreen", True)
 
     manager = MyManager()
 
@@ -196,7 +217,7 @@ if __name__ == "__main__":
 
 #---------------------------------------------------------------
     #arriere plan
-    bg_img = tkinter.PhotoImage(file=r"C:\Users\sebas\Downloads\84248.png")
+    bg_img = tkinter.PhotoImage(file=r"/home/pi/Downloads/84248.png")
     bg_label = tkinter.Label(page1, image=bg_img)
     bg_label.pack()
 #---------------------------------------------------------------
@@ -237,18 +258,7 @@ if __name__ == "__main__":
     endbt = tkinter.Button(frame9, text="Termine", command=avant)
     endbt.pack()
 
-    #buttons for multiprocess
-    bt1 = tkinter.Button(text="Active le système de nutition", command=proc1)
-    #bt1.pack()
-
-    bt2 = tkinter.Button(text="Active le système de surveillance", command=proc2)
-    #bt1.pack()
-
-    bt3 = tkinter.Button(text="Montrer la diffusion camera", command=proc3)
-    #bt1.pack()
-
-    bt4 = tkinter.Button(text="Envoyer des notifications", command=proc4)
-    #bt1.pack()
+  
 #---------------------------------------------------------------
     #labels
     tlb = tkinter.Label(frame1, text= "Bienvenue au SDSN!")
@@ -316,8 +326,9 @@ if __name__ == "__main__":
     combo6.pack()
 #---------------------------------------------------------------
     #scale
+    obj_int = tkinter.IntVar()
 
-    scale1 = tkinter.Scale(frame8, from_=0, to=1000, orient=tkinter.HORIZONTAL)
+    scale1 = tkinter.Entry(frame8,textvariable= obj_int)
     scale1.pack()
 #---------------------------------------------------------------
 

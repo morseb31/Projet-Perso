@@ -165,14 +165,12 @@ def launch_alert(compte, lifo):
         if GPIO.input(soundpin) == 0:
 
             compte += 1
-            
-            typo +=1
 
             lifo.put(compte)
 
             Led()
 
-            results
+            results()
             
             Print(GPIO.input(soundpin))
 
