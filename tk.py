@@ -12,8 +12,10 @@ from multiprocessing import *
 import os
 from queue import *
 import PIL
-import matplotlib.pyplot as plt
-import re
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib import pyplot as plt
+import mat
 
 #-----------------------------------------------------------------------------------------------------
 # functions   
@@ -135,24 +137,8 @@ def alert_status(compte, lifo):
                 return
 
 def diagram():
-
-    patron1 = re.compile("19")
-
-    nineteen = 0
-
-    two = 0
-
-    three = 0
-
-    four = 0
-
-    for line in open("sdsn.results"):
-        for match in re.match(patron1, line):
-            nineteen += 1
-
-    plt.plot([two, three, four, nineteen])
-    plt.ylabel('some numbers')
-    plt.show()
+    mat.matcool()
+    
 
 #-----------------------------------------------------------------------------------------------------
 #mutliprocess
@@ -207,6 +193,7 @@ if __name__ == "__main__":
     item2 = 0
 
     mail = smtplib.SMTP('smtp.gmail.com',587)
+
 #---------------------------------------------------------------
     #pages
     page1 = tkinter.Frame(root)
