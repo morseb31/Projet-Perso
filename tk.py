@@ -16,6 +16,9 @@ import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
 import mat
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasAgg, FigureCanvasTkAgg, NavigationToolbar2Tk
+import re
 
 #-----------------------------------------------------------------------------------------------------
 # functions   
@@ -44,6 +47,9 @@ def avant():
     frame14 = tkinter.Frame(page2)
     frame14.place(relx=0.5, rely=0.5, relwidth=0.15, relheight=0.1)
 
+    frame15 = tkinter.Frame(page2)
+    frame15.place(relx=0.5, rely=0.7, relwidth=0.5, relheight=0.2)
+
     bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
     bt1.pack()
 
@@ -56,7 +62,7 @@ def avant():
     bt4 = tkinter.Button(frame13, text="Envoyer des notifications", command=proc4)
     bt4.pack()
 
-    bt5 = tkinter.Button(frame14, text="Resumer de la journee", command=proc5)
+    bt5 = tkinter.Button(frame14, text="Resumer de la journee", command=diagram)
     bt5.pack()
     
 
@@ -66,18 +72,18 @@ def arriere():
     page1.pack()
 
 def feed():
-    #while True:
-        #now = datetime.now()
-        #hm = now.strftime("%Y,%H")
+    while True:
+        now = datetime.now()
+        hm = now.strftime("%H" + "%M")
 
-        #if combo1.get() + combo2.get() == hm:
-    launch_motor()
+        if combo1.get() + combo2.get() == hm:
+            launch_motor()
 
-        #if combo3.get() + combo4.get() == hm:
-            #launch_motor()
+        if combo3.get() + combo4.get() == hm:
+            launch_motor()
 
-        #if combo5.get() + combo6.get() == hm:
-            #launch_motor()
+        if combo5.get() + combo6.get() == hm:
+            launch_motor()
 
 def Message():
     user_mail = e3.get()
@@ -137,7 +143,205 @@ def alert_status(compte, lifo):
                 return
 
 def diagram():
-    mat.matcool()
+    patron1 = re.compile("1")
+
+    patron2 = re.compile("2")
+
+    patron3 = re.compile("3")
+
+    patron4 = re.compile("4")
+
+    patron5 = re.compile("5")
+
+    patron6 = re.compile("6")
+
+    patron7 = re.compile("7")
+
+    patron8 = re.compile("8")
+
+    patron9 = re.compile("9")
+
+    patron10 = re.compile("10")
+
+    patron11 = re.compile("11")
+
+    patron12 = re.compile("12")
+
+    patron13 = re.compile("13")
+
+    patron14 = re.compile("14")
+
+    patron15 = re.compile("15")
+
+    patron16 = re.compile("16")
+
+    patron17 = re.compile("17")
+
+    patron18 = re.compile("18")
+
+    patron19 = re.compile("19")
+
+    patron20 = re.compile("20")
+
+    patron21 = re.compile("21")
+
+    patron22 = re.compile("22")
+
+    patron23 = re.compile("23")
+
+    patron24 = re.compile("24")
+
+    one = 0
+
+    two = 0
+
+    three = 0
+
+    four = 0
+
+    five = 0
+
+    six = 0
+
+    seven = 0
+
+    eight = 0
+
+    nine = 0
+
+    ten = 0
+
+    eleven = 0
+
+    twelve = 0
+
+    thirteen= 0
+
+    fourteen = 0
+
+    fifteen = 0
+
+    sixteen = 0
+
+    seventeen = 0
+
+    eighteen = 0
+
+    nineteen = 0
+
+    twenty = 0
+
+    twentyone = 0
+
+    twentytwo = 0
+
+    twentythree = 0
+
+    twentyfour = 0
+
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron1, line):
+            one += 1
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron2, line):
+            two += 1
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron3, line):
+            three += 1
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron4, line):
+            four += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron5, line):
+            five += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron6, line):
+            six += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron7, line):
+            seven += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron8, line):
+            eight += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron9, line):
+            nine += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron10, line):
+            ten += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron11, line):
+            eleven += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron12, line):
+            twelve += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron13, line):
+            thirteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron14, line):
+            fourteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron15, line):
+            fifteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron16, line):
+            sixteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron17, line):
+            seventeen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron18, line):
+            eighteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron19, line):
+            nineteen += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron20, line):
+            twenty += 1
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron21, line):
+            twentyone += 1
+
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron22, line):
+            twentytwo += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron23, line):
+            twentythree += 1
+    
+    for line in open("sdsnresults"):
+        for match in re.finditer(patron24, line):
+            twentyfour += 1
+
+    plt.plot([one, two, three, four, five, six, seven, eight, nine , ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twentyone, twentytwo, twentythree, twentyfour])
+    plt.ylabel('Heure')
+    plt.xlabel('Nombre de bruits')
+    plt.show()
+
+
     
 
 #-----------------------------------------------------------------------------------------------------
@@ -162,13 +366,6 @@ def proc4():
         p4 = Process(target=alert_status, args=(compte, lifo))   
 
         p4.start()
-
-
-def proc5():
-    if __name__ == '__main__':
-        p5 = Process(target=diagram)   
-
-        p5.start()
 
 #-----------------------------------------------------------------------------------------------------
 

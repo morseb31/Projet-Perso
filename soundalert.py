@@ -67,8 +67,6 @@ def Led():
 def results():
     now = datetime.now()
 
-    print("now =", now)
-
     dt_string = now.strftime("%H")
    
     texte = "\n" + dt_string 
@@ -82,7 +80,9 @@ class MyManager(BaseManager):
 MyManager.register('LifoQueue', LifoQueue)
 
 
-def rec():
+def rec(file):
+
+    file = "sound.wav"
 
     chunk = 1024
 
@@ -124,9 +124,7 @@ def rec():
 
     wf.close()
 
-def calc_distances(file):
 
-    rec()
 
     min_val = 5000
     
@@ -153,10 +151,25 @@ def calc_distances(file):
     return distances
 
 def sound_type():
-    calc_distances(file)
-    print(calc_distances(file))
+    rec(file)
+    print(rec(file))
+    a = float(sum(rec(file)))
+
+    print(a)
+
+    test = float(0.12)
+
+    dif = a - test
+
+    if -1 < dif > 1:
+        print("lets go")
+
+    else:
+        print("nada")
 
 def launch_alert(compte, lifo):
+
+    compte2 = 0
 
     while True:
 
@@ -165,6 +178,8 @@ def launch_alert(compte, lifo):
         if GPIO.input(soundpin) == 0:
 
             compte += 1
+            
+            compte2 +=1
 
             lifo.put(compte)
 
@@ -173,6 +188,10 @@ def launch_alert(compte, lifo):
             results()
             
             Print(GPIO.input(soundpin))
+
+            if compte2 > 2:
+                sound_type()
+                compte2 = 0
 
         else:
                 
@@ -188,6 +207,8 @@ if __name__ == "__main__":
     manager.start()
     
     compte = int(compte)
+
+    typo = int(typo)
 
     lifo = manager.LifoQueue()
 

@@ -69,6 +69,8 @@ if __name__=="__main__":
 
     b = float(sum(calc_distances(file2)))
 
+    print(a)
+
     dif = a - b
 
     if 0 < dif < 1:
