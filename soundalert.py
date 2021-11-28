@@ -80,9 +80,7 @@ class MyManager(BaseManager):
 MyManager.register('LifoQueue', LifoQueue)
 
 
-def rec(file):
-
-    file = "sound.wav"
+def rec():
 
     chunk = 1024
 
@@ -104,7 +102,7 @@ def rec(file):
     for i in range(int(44100 / chunk * record_seconds)):
         data = stream.read(chunk)
 
-    frames.append(data)
+        frames.append(data)
     print("Finished recording.")
 
     stream.stop_stream()
@@ -125,6 +123,11 @@ def rec(file):
     wf.close()
 
 
+def rec_a(file):
+
+    rec()
+
+    time.sleep(5)
 
     min_val = 5000
     
@@ -151,17 +154,20 @@ def rec(file):
     return distances
 
 def sound_type():
-    rec(file)
-    print(rec(file))
-    a = float(sum(rec(file)))
+
+    a = float(sum(rec_a(file)))
 
     print(a)
 
     test = float(0.12)
 
-    dif = a - test
+    dif = test - a
 
-    if -1 < dif > 1:
+    diff = int(dif)
+
+    print(dif)
+
+    if -1 < diff < 1:
         print("lets go")
 
     else:
@@ -189,7 +195,7 @@ def launch_alert(compte, lifo):
             
             Print(GPIO.input(soundpin))
 
-            if compte2 > 2:
+            if compte2 > 30:
                 sound_type()
                 compte2 = 0
 

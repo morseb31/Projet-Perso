@@ -143,23 +143,23 @@ def alert_status(compte, lifo):
                 return
 
 def diagram():
-    patron1 = re.compile("1")
+    patron1 = re.compile("1 ")
 
-    patron2 = re.compile("2")
+    patron2 = re.compile("2 ")
 
-    patron3 = re.compile("3")
+    patron3 = re.compile("3 ")
 
-    patron4 = re.compile("4")
+    patron4 = re.compile("4 ")
 
-    patron5 = re.compile("5")
+    patron5 = re.compile("5 ")
 
-    patron6 = re.compile("6")
+    patron6 = re.compile("6 ")
 
-    patron7 = re.compile("7")
+    patron7 = re.compile("7 ")
 
-    patron8 = re.compile("8")
+    patron8 = re.compile("8 ")
 
-    patron9 = re.compile("9")
+    patron9 = re.compile("9 ")
 
     patron10 = re.compile("10")
 
@@ -240,99 +240,99 @@ def diagram():
     twentyfour = 0
 
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron1, line):
             one += 1
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron2, line):
             two += 1
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron3, line):
             three += 1
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron4, line):
             four += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron5, line):
             five += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron6, line):
             six += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron7, line):
             seven += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron8, line):
             eight += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron9, line):
             nine += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron10, line):
             ten += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron11, line):
             eleven += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron12, line):
             twelve += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron13, line):
             thirteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron14, line):
             fourteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron15, line):
             fifteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron16, line):
             sixteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron17, line):
             seventeen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron18, line):
             eighteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron19, line):
             nineteen += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron20, line):
             twenty += 1
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron21, line):
             twentyone += 1
 
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron22, line):
             twentytwo += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron23, line):
             twentythree += 1
     
-    for line in open("sdsnresults"):
+    for line in open("sdsn.results"):
         for match in re.finditer(patron24, line):
             twentyfour += 1
 
