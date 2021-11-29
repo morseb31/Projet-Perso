@@ -13,6 +13,21 @@ pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 # App Globals (do not edit)
 app = Flask(__name__)
 
+def comptage():
+    with open("sdsn.results") as file:
+        
+        for last_line in file:
+
+            pass
+
+    print(last_line)
+
+    compte = last_line
+
+    print(compte)
+
+    return compte
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
@@ -58,11 +73,9 @@ def audio():
     
     return Response(sound())
 
-
-
 @app.route('/')
 def index():
-    return render_template('index.html', Variable=last_line) 
+    return render_template('index.html', Compte=comptage()) 
 
 def gen(camera):
     #get camera frame
@@ -83,14 +96,8 @@ def SomeFunction():
 
 if __name__ == '__main__':
 
-    with open("sdsn.results") as file:
-        first_line = file.readline()
-        for last_line in file:
+    comptage()
 
-            pass
-
-print(last_line)
-
-app.run(host='0.0.0.0', threaded=True, port=80)
+    app.run(host='0.0.0.0', threaded=True, port=5000)
 
     

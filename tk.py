@@ -120,6 +120,13 @@ def Message():
 def stream():
     webbrowser.open("http://192.168.2.68:5000/")
 
+def setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
+
 def alert_status(compte, lifo):
 
     now = datetime.now()
@@ -128,7 +135,7 @@ def alert_status(compte, lifo):
 
     dt1 = now.strftime("%B %d, %Y %H")
 
-    print(dt1)
+    ready()
 
     while True:
 
@@ -152,15 +159,20 @@ def alert_status(compte, lifo):
 
                 print("losing")
 
+                GPIO.output(26, GPIO.HIGH)
             
             if item - item2 == 0:
 
                 print("tie")
 
-            
+                GPIO.output(24, GPIO.HIGH)   
+        
             if item + 0 > item2:
 
                 print("oh no")
+
+
+                GPIO.output(22, GPIO.HIGH)   
 
                 Message()
 
