@@ -67,8 +67,6 @@ def Led():
 def results():
     now = datetime.now()
 
-    print("now =", now)
-
     dt_string = now.strftime("%H")
    
     texte = "\n" + dt_string 
@@ -104,7 +102,7 @@ def rec():
     for i in range(int(44100 / chunk * record_seconds)):
         data = stream.read(chunk)
 
-    frames.append(data)
+        frames.append(data)
     print("Finished recording.")
 
     stream.stop_stream()
@@ -124,9 +122,12 @@ def rec():
 
     wf.close()
 
-def calc_distances(file):
+
+def rec_a(file):
 
     rec()
+
+    time.sleep(5)
 
     min_val = 5000
     
@@ -153,10 +154,28 @@ def calc_distances(file):
     return distances
 
 def sound_type():
-    calc_distances(file)
-    print(calc_distances(file))
+
+    a = float(sum(rec_a(file)))
+
+    print(a)
+
+    test = float(0.12)
+
+    dif = test - a
+
+    diff = int(dif)
+
+    print(dif)
+
+    if -1 < diff < 1:
+        print("lets go")
+
+    else:
+        print("nada")
 
 def launch_alert(compte, lifo):
+
+    compte2 = 0
 
     while True:
 
@@ -166,15 +185,19 @@ def launch_alert(compte, lifo):
 
             compte += 1
             
-            typo +=1
+            compte2 +=1
 
             lifo.put(compte)
 
             Led()
 
-            results
+            results()
             
             Print(GPIO.input(soundpin))
+
+            if compte2 > 30:
+                sound_type()
+                compte2 = 0
 
         else:
                 
@@ -190,6 +213,8 @@ if __name__ == "__main__":
     manager.start()
     
     compte = int(compte)
+
+    typo = int(typo)
 
     lifo = manager.LifoQueue()
 

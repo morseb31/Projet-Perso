@@ -71,8 +71,11 @@ if __name__=="__main__":
 
     print(a)
 
+<<<<<<< HEAD
     print(b)
 
+=======
+>>>>>>> b07eef4e8b7dc8546d3da132c2dd9b0498a10949
     dif = a - b
 
     if -1 < dif < 1:
