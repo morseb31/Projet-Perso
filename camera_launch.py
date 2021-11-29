@@ -1,3 +1,4 @@
+from tkinter import Variable
 from flask import Flask, render_template, Response, request
 from camera import VideoCamera
 import time
@@ -61,7 +62,7 @@ def audio():
 
 @app.route('/')
 def index():
-    return render_template('index.html') #you can customze index.html here
+    return render_template('index.html', Variable=last_line) 
 
 def gen(camera):
     #get camera frame
@@ -80,9 +81,16 @@ def SomeFunction():
     print('In SomeFunction')
     return "Nothing"
 
-
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', threaded=True, port=80)
+    with open("sdsn.results") as file:
+        first_line = file.readline()
+        for last_line in file:
+
+            pass
+
+print(last_line)
+
+app.run(host='0.0.0.0', threaded=True, port=80)
 
     

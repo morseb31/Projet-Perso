@@ -50,6 +50,9 @@ def avant():
     frame15 = tkinter.Frame(page2)
     frame15.place(relx=0.5, rely=0.7, relwidth=0.5, relheight=0.2)
 
+    frame16 = tkinter.Frame(page2)
+    frame16.place(relx=0.5, rely=0.9, relwidth=0.1, relheight=0.1)
+
     bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
     bt1.pack()
 
@@ -77,12 +80,33 @@ def feed():
         hm = now.strftime("%H" + "%M")
 
         if combo1.get() + combo2.get() == hm:
+
+            texte = "À " + hm + " heure" + " votre chien a été nourrit"
+
+            with open("resume","a") as f:
+                f.write(texte)
+                f.close
+            
             launch_motor()
 
         if combo3.get() + combo4.get() == hm:
+
+            texte = "À " + hm + " heure" + " votre chien a été nourrit"
+
+            with open("resume","a") as f:
+                f.write(texte)
+                f.close
+
             launch_motor()
 
         if combo5.get() + combo6.get() == hm:
+
+            texte = "À " + hm + " heure" + " votre chien a été nourrit"
+
+            with open("resume","a") as f:
+                f.write(texte)
+                f.close
+
             launch_motor()
 
 def Message():
@@ -143,6 +167,15 @@ def alert_status(compte, lifo):
                 return
 
 def diagram():
+
+    a_file = open("sample.txt")
+
+    res = a_file.readlines()
+
+    lbr = tkinter.Label(frame16, text=res)
+
+    lbr.pack()
+
     patron1 = re.compile("1 ")
 
     patron2 = re.compile("2 ")
@@ -341,9 +374,6 @@ def diagram():
     plt.xlabel('Nombre de bruits')
     plt.show()
 
-
-    
-
 #-----------------------------------------------------------------------------------------------------
 #mutliprocess
 def proc1():
@@ -435,6 +465,7 @@ if __name__ == "__main__":
     frame9 = tkinter.Frame(page1)
     frame9.place(relx=0.9, rely=0.9, relwidth=0.15, relheight=0.1)
 
+    frame16 = tkinter.Frame(page2)
 #---------------------------------------------------------------
 
 #---------------------------------------------------------------

@@ -1,8 +1,8 @@
 from scipy.io.wavfile import read
 
-file = "recorded.wav"
+file = "13_55.wav"
 
-file2 = "recorded2.wav"
+file2 = "Dog2.wav"
 
 def calc_distances(file):
 
@@ -41,7 +41,7 @@ def calc_distances2(file2):
     focus_size = int(0.15 * fs)
     
     focuses = []
-    distances2 = []
+    distances = []
     idx = 0
     
     while idx < len(data):
@@ -51,19 +51,19 @@ def calc_distances2(file2):
             if len(focuses) > 1:
                 last_focus = focuses[-2]
                 actual_focus = focuses[-1]
-                distances2.append(actual_focus - last_focus)
+                distances.append(actual_focus - last_focus)
             idx += focus_size
         else:
             idx += 1
-    return distances2
+    return distances
+
+
+
     
 if __name__=="__main__":
 
     calc_distances(file)
     calc_distances2(file2)
-
-    print(calc_distances(file))
-    print(calc_distances(file2))
 
     a = float(sum(calc_distances(file)))
 
@@ -71,9 +71,14 @@ if __name__=="__main__":
 
     print(a)
 
+<<<<<<< HEAD
+    print(b)
+
+=======
+>>>>>>> b07eef4e8b7dc8546d3da132c2dd9b0498a10949
     dif = a - b
 
-    if 0 < dif < 1:
+    if -1 < dif < 1:
         print("less go")
 
     else:
