@@ -168,7 +168,7 @@ def sound_type():
     if -1 < diff < 1:
         print("lets go")
 
-        texte = "À " + hour + " heure" + " votre chien était en colère"
+        texte = "\n" + "À " + hour + " heure" + " votre chien était en colère"
 
         with open("resume","a") as f:
             f.write(texte)
