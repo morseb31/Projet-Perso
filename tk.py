@@ -21,7 +21,40 @@ from matplotlib.backends.backend_tkagg import FigureCanvasAgg, FigureCanvasTkAgg
 import re
 
 #-----------------------------------------------------------------------------------------------------
-# functions   
+# functions
+
+def setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
+
+def led():
+    setup()
+
+    with open("comptage") as file:
+        
+        for last_line in file:
+
+            pass
+
+    compte = last_line
+
+    if compte < scale1.get():
+        GPIO.output(22, GPIO.HIGH)
+
+    if compte == scale1.get():
+        GPIO.output(22, GPIO.LOW)
+        GPIO.output(24, GPIO.HIGH)
+
+    if compte > scale1.get():
+       GPIO.output(24, GPIO.LOW)    
+       GPIO.output(26, GPIO.HIGH)
+    
+    else:
+        time.sleep(0.05)
+     
 def avant():
     page1.pack_forget()
     bg_label2 = tkinter.Label(page2, image=bg_img)
@@ -120,13 +153,6 @@ def Message():
 def stream():
     webbrowser.open("http://192.168.2.68:5000/")
 
-def setup():
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
-
 def alert_status(compte, lifo):
 
     now = datetime.now()
@@ -135,17 +161,20 @@ def alert_status(compte, lifo):
 
     dt1 = now.strftime("%B %d, %Y %H")
 
-    ready()
+    print(dt1)
 
     while True:
 
-
         if lifo.empty() == True:
+
+            led()
 
             time.sleep(0.005)
 
             
         if lifo.empty() == False:
+
+            led()
 
             print("not empty")
 
@@ -159,20 +188,15 @@ def alert_status(compte, lifo):
 
                 print("losing")
 
-                GPIO.output(26, GPIO.HIGH)
             
             if item - item2 == 0:
 
                 print("tie")
 
-                GPIO.output(24, GPIO.HIGH)   
-        
+            
             if item + 0 > item2:
 
                 print("oh no")
-
-
-                GPIO.output(22, GPIO.HIGH)   
 
                 Message()
 
@@ -180,7 +204,7 @@ def alert_status(compte, lifo):
 
 def diagram():
 
-    a_file = open("sample.txt")
+    a_file = open("resume")
 
     res = a_file.readlines()
 

@@ -46,7 +46,7 @@ def run():
     GPIO.cleanup()
 
 def comptage():
-    with open("sdsn.results") as file:
+    with open("comptage") as file:
         
         for last_line in file:
 
