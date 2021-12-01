@@ -6,12 +6,59 @@ import threading
 import os
 import pyaudio
 import struct
+import RPi.GPIO as GPIO
+import time
+
+servo = 8
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(servo, GPIO.OUT)
+
+pwm=GPIO.PWM(servo, 50)
+
+pwm.start(0)
 
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 
 # App Globals (do not edit)
 app = Flask(__name__)
+
+def SetAngle(angle):
+	duty = angle / 18 + 2
+	GPIO.output(servo, True)
+	pwm.ChangeDutyCycle(duty)
+	time.sleep(1)
+	GPIO.output(servo, False)
+	pwm.ChangeDutyCycle(0)
+
+print('start testing')
+
+def run():
+    
+    SetAngle(180) 
+
+    SetAngle(90) 
+
+    pwm.stop()
+
+    GPIO.cleanup()
+
+def comptage():
+    with open("sdsn.results") as file:
+        
+        for last_line in file:
+
+            pass
+
+    print(last_line)
+
+    compte = last_line
+
+    print(compte)
+
+    return compte
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
@@ -58,11 +105,9 @@ def audio():
     
     return Response(sound())
 
-
-
 @app.route('/')
 def index():
-    return render_template('index.html', Variable=last_line) 
+    return render_template('index.html', Compte=comptage()) 
 
 def gen(camera):
     #get camera frame
@@ -78,19 +123,13 @@ def video_feed():
 
 @app.route('/SomeFunction')
 def SomeFunction():
-    print('In SomeFunction')
+    run()
     return "Nothing"
 
 if __name__ == '__main__':
 
-    with open("sdsn.results") as file:
-        first_line = file.readline()
-        for last_line in file:
+    comptage()
 
-            pass
-
-print(last_line)
-
-app.run(host='0.0.0.0', threaded=True, port=80)
+    app.run(host='0.0.0.0', threaded=True, port=5000)
 
     

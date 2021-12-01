@@ -27,11 +27,9 @@ file = "sound.wav"
 def ready():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(7, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(11, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(13, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(15, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(19, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(22, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(24, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(soundpin, GPIO.IN)
 
 def Print(x):
@@ -50,17 +48,13 @@ def Print(x):
 
 def Led():
     time.sleep(0.5)
-    GPIO.output(7, GPIO.HIGH)
-    GPIO.output(11, GPIO.HIGH)   
-    GPIO.output(13, GPIO.HIGH)
-    GPIO.output(15, GPIO.HIGH)
-    GPIO.output(19, GPIO.HIGH)
+    GPIO.output(22, GPIO.HIGH)
+    GPIO.output(24, GPIO.HIGH)   
+    GPIO.output(26, GPIO.HIGH)
     time.sleep(0.5)
-    GPIO.output(7, GPIO.LOW)
-    GPIO.output(11, GPIO.LOW)
-    GPIO.output(13, GPIO.LOW)
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(19, GPIO.LOW)
+    GPIO.output(22, GPIO.LOW)
+    GPIO.output(24, GPIO.LOW)
+    GPIO.output(26, GPIO.LOW)
     time.sleep(0.5)  
 
 
@@ -174,7 +168,7 @@ def sound_type():
     if -1 < diff < 1:
         print("lets go")
 
-        texte = "À " + hour + " heure" + " votre chien était en colère"
+        texte = "\n" + "À " + hour + " heure" + " votre chien était en colère"
 
         with open("resume","a") as f:
             f.write(texte)
@@ -193,15 +187,17 @@ def launch_alert(compte, lifo):
 
         if GPIO.input(soundpin) == 0:
 
+            print("on")
+
             compte += 1
             
             compte2 +=1
 
             lifo.put(compte)
 
-            Led()
-
             results()
+
+            Led()
             
             Print(GPIO.input(soundpin))
 
