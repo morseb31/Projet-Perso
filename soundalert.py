@@ -194,7 +194,7 @@ def launch_alert(compte, lifo):
             compte2 +=1
             
             with open("comptage","a") as f:
-                f.write(compte)
+                f.write(str(compte))
                 f.close
 
             lifo.put(compte)

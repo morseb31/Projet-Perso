@@ -33,22 +33,25 @@ def setup():
 def led():
     setup()
 
+    global compte
+    global last_line
+
     with open("comptage") as file:
         
         for last_line in file:
 
             pass
 
-    compte = last_line
+    compte = int(last_line)
 
-    if compte < scale1.get():
+    if compte < int(scale1.get()):
         GPIO.output(22, GPIO.HIGH)
 
-    if compte == scale1.get():
+    if compte == int(scale1.get()):
         GPIO.output(22, GPIO.LOW)
         GPIO.output(24, GPIO.HIGH)
 
-    if compte > scale1.get():
+    if compte > int(scale1.get()):
        GPIO.output(24, GPIO.LOW)    
        GPIO.output(26, GPIO.HIGH)
     
@@ -58,33 +61,30 @@ def led():
 def avant():
     page1.pack_forget()
     bg_label2 = tkinter.Label(page2, image=bg_img)
-    frame10 = tkinter.Frame(page2)
+    frame10 = tkinter.Frame(page2, bg="#69537d")
     frame10.place(relx=0.9, rely=0.9, relwidth=0.15, relheight=0.1)
     endbt2 = tkinter.Button(frame10, text="Retour", command=arriere)
     endbt2.pack()
     bg_label2.pack() 
     page2.pack()
 
-    frame10 = tkinter.Frame(page2)
+    frame10 = tkinter.Frame(page2, bg="#69537d")
     frame10.place(relx=0.1, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame11 = tkinter.Frame(page2)
+    frame11 = tkinter.Frame(page2, bg="#69537d")
     frame11.place(relx=0.3, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame12 = tkinter.Frame(page2)
+    frame12 = tkinter.Frame(page2, bg="#69537d")
     frame12.place(relx=0.5, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame13 = tkinter.Frame(page2)
+    frame13 = tkinter.Frame(page2, bg="#69537d")
     frame13.place(relx=0.7, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame14 = tkinter.Frame(page2)
+    frame14 = tkinter.Frame(page2, bg="#69537d")
     frame14.place(relx=0.5, rely=0.5, relwidth=0.15, relheight=0.1)
 
-    frame15 = tkinter.Frame(page2)
-    frame15.place(relx=0.5, rely=0.7, relwidth=0.5, relheight=0.2)
-
-    frame16 = tkinter.Frame(page2)
-    frame16.place(relx=0.5, rely=0.9, relwidth=0.1, relheight=0.1)
+    frame16 = tkinter.Frame(page2, bg="#69537d")
+    frame16.place(relx=0.2, rely=0.6, relwidth=0.15, relheight=0.3)
 
     bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
     bt1.pack()
@@ -100,6 +100,18 @@ def avant():
 
     bt5 = tkinter.Button(frame14, text="Resumer de la journee", command=diagram)
     bt5.pack()
+
+    lbra = tkinter.Label(frame16, text="hi")
+
+    lbra.pack()
+
+    a_file = open("resume")
+
+    res = a_file.readlines()
+
+    print(res)
+
+    lbra.config(text=res)
     
 
 def arriere():
@@ -204,13 +216,9 @@ def alert_status(compte, lifo):
 
 def diagram():
 
-    a_file = open("resume")
+    arriere()
 
-    res = a_file.readlines()
-
-    lbr = tkinter.Label(frame16, text=res)
-
-    lbr.pack()
+    avant()
 
     patron1 = re.compile("1 ")
 
@@ -457,6 +465,8 @@ if __name__ == "__main__":
 
     mail = smtplib.SMTP('smtp.gmail.com',587)
 
+    last_line = 0
+
 #---------------------------------------------------------------
     #pages
     page1 = tkinter.Frame(root)
@@ -474,34 +484,34 @@ if __name__ == "__main__":
 
 #Page 1
 #---------------------------------------------------------------
-    frame1 = tkinter.Frame(page1)
+    frame1 = tkinter.Frame(page1, bg="#69537d")
     frame1.place(relx=0.425, rely=0.05, relwidth=0.15, relheight=0.05)
 
-    frame2 = tkinter.Frame(page1)
+    frame2 = tkinter.Frame(page1, bg="#69537d")
     frame2.place(relx=0.425, rely=0.10, relwidth=0.15, relheight=0.05)
 
-    frame3 = tkinter.Frame(page1)
+    frame3 = tkinter.Frame(page1, bg="#69537d")
     frame3.place(relx=0.425, rely=0.20, relwidth=0.15, relheight=0.05)
 
-    frame4 = tkinter.Frame(page1)
+    frame4 = tkinter.Frame(page1, bg="#69537d")
     frame4.place(relx=0.425, rely=0.30, relwidth=0.15, relheight=0.05)
 
-    frame5 = tkinter.Frame(page1)
+    frame5 = tkinter.Frame(page1, bg="#69537d")
     frame5.place(relx=0.2, rely=0.40, relwidth=0.15, relheight=0.1)
 
-    frame6 = tkinter.Frame(page1)
+    frame6 = tkinter.Frame(page1, bg="#69537d")
     frame6.place(relx=0.425, rely=0.40, relwidth=0.15, relheight=0.1)
 
-    frame7 = tkinter.Frame(page1)
+    frame7 = tkinter.Frame(page1, bg="#69537d")
     frame7.place(relx=0.65, rely=0.40, relwidth=0.15, relheight=0.1)
 
-    frame8 = tkinter.Frame(page1)
+    frame8 = tkinter.Frame(page1, bg="#69537d")
     frame8.place(relx=0.425, rely=0.50, relwidth=0.15, relheight=0.1)
 
-    frame9 = tkinter.Frame(page1)
+    frame9 = tkinter.Frame(page1, bg="#69537d")
     frame9.place(relx=0.9, rely=0.9, relwidth=0.15, relheight=0.1)
 
-    frame16 = tkinter.Frame(page2)
+    frame16 = tkinter.Frame(page2, bg="#69537d")
 #---------------------------------------------------------------
 
 #---------------------------------------------------------------
@@ -543,6 +553,8 @@ if __name__ == "__main__":
     lb7 = tkinter.Label(frame8, text= "Objectif de bruit")
     lb7.config(font=("Arial", 8))
     lb7.pack()
+
+    lbra = tkinter.Label(frame16, text="hi")
 #---------------------------------------------------------------
 
 #---------------------------------------------------------------
