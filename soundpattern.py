@@ -1,8 +1,8 @@
 from scipy.io.wavfile import read
 
-file = "13_55.wav"
+file = "Dog3.wav"
 
-file2 = "Dog2.wav"
+file2 = "Dog4.wav"
 
 def calc_distances(file):
 
@@ -71,11 +71,8 @@ if __name__=="__main__":
 
     print(a)
 
-<<<<<<< HEAD
     print(b)
 
-=======
->>>>>>> b07eef4e8b7dc8546d3da132c2dd9b0498a10949
     dif = a - b
 
     if -1 < dif < 1:
