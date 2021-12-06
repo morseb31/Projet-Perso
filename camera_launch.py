@@ -95,7 +95,7 @@ def audio():
         channels = 2
         wav_header = genHeader(sampleRate, bitsPerSample, channels)
 
-        stream = audio1.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True,input_device_index=2, frames_per_buffer=CHUNK)
+        stream = audio1.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True,input_device_index=6, frames_per_buffer=CHUNK)
         
         print("recording...")
 

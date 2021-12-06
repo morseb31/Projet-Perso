@@ -1,8 +1,8 @@
 from scipy.io.wavfile import read
 
-file = "Dog3.wav"
+file = "DogCry.wav"
 
-file2 = "Dog4.wav"
+file2 = "DogSigh.wav"
 
 def calc_distances(file):
 

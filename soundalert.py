@@ -157,7 +157,7 @@ def sound_type():
 
     print(a)
 
-    test = float(0.12)
+    test = float(0.17)
 
     dif = test - a
 
@@ -168,7 +168,7 @@ def sound_type():
     if -1 < diff < 1:
         print("lets go")
 
-        texte = "\n" + "À " + hour + " heure" + " votre chien était en colère"
+        texte = "\n" + "À " + hour + " heure" + " votre chien était triste"
 
         with open("resume","a") as f:
             f.write(texte)
@@ -192,10 +192,12 @@ def launch_alert(compte, lifo):
             compte += 1
             
             compte2 +=1
-            
-            with open("comptage","a") as f:
-                f.write(str(compte))
-                f.close
+
+            text = "\n" + str(compte)
+
+            with open("comptage","a") as a:
+                a.write(text)
+                a.close()
 
             lifo.put(compte)
 
@@ -205,7 +207,7 @@ def launch_alert(compte, lifo):
             
             Print(GPIO.input(soundpin))
 
-            if compte2 > 30:
+            if compte2 > 0:
                 sound_type()
                 compte2 = 0
 

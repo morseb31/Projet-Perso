@@ -67,7 +67,7 @@ def avant():
     endbt2.pack()
     bg_label2.pack() 
     page2.pack()
-
+    
     frame10 = tkinter.Frame(page2, bg="#69537d")
     frame10.place(relx=0.1, rely=0.3, relwidth=0.15, relheight=0.1)
 
@@ -85,6 +85,13 @@ def avant():
 
     frame16 = tkinter.Frame(page2, bg="#69537d")
     frame16.place(relx=0.2, rely=0.6, relwidth=0.15, relheight=0.3)
+
+    frame17 = tkinter.Frame(page2, bg="#69537d")
+    frame17.place(relx=0.4, rely=0.1, relwidth=0.25, relheight=0.15)
+
+    lbi = tkinter.Label(frame17, text="Bienvenue aux configurations de l'app." + "\n" + "Veillez choisir les systeme que vous voulez activer.")
+    lbi.config(font=("Ariel, 12"))
+    lbi.pack()
 
     bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
     bt1.pack()
@@ -112,7 +119,6 @@ def avant():
     print(res)
 
     lbra.config(text=res)
-    
 
 def arriere():
     page2.pack_forget()
@@ -120,6 +126,7 @@ def arriere():
     page1.pack()
 
 def feed():
+
     while True:
         now = datetime.now()
         hm = now.strftime("%H" + "%M")
