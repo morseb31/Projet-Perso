@@ -60,69 +60,81 @@ def led():
      
 def avant():
     page1.pack_forget()
-    bg_label2 = tkinter.Label(page2, image=bg_img)
-    frame10 = tkinter.Frame(page2, bg="#69537d")
-    frame10.place(relx=0.9, rely=0.9, relwidth=0.15, relheight=0.1)
-    endbt2 = tkinter.Button(frame10, text="Retour", command=arriere)
-    endbt2.pack()
-    bg_label2.pack() 
+
     page2.pack()
-    
-    frame10 = tkinter.Frame(page2, bg="#69537d")
+
+    bg_label2.pack() 
+
     frame10.place(relx=0.1, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame11 = tkinter.Frame(page2, bg="#69537d")
     frame11.place(relx=0.3, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame12 = tkinter.Frame(page2, bg="#69537d")
     frame12.place(relx=0.5, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame13 = tkinter.Frame(page2, bg="#69537d")
     frame13.place(relx=0.7, rely=0.3, relwidth=0.15, relheight=0.1)
 
-    frame14 = tkinter.Frame(page2, bg="#69537d")
     frame14.place(relx=0.5, rely=0.5, relwidth=0.15, relheight=0.1)
 
-    frame16 = tkinter.Frame(page2, bg="#69537d")
     frame16.place(relx=0.2, rely=0.6, relwidth=0.15, relheight=0.3)
 
-    frame17 = tkinter.Frame(page2, bg="#69537d")
     frame17.place(relx=0.4, rely=0.1, relwidth=0.25, relheight=0.15)
 
-    lbi = tkinter.Label(frame17, text="Bienvenue aux configurations de l'app." + "\n" + "Veillez choisir les systeme que vous voulez activer.")
-    lbi.config(font=("Ariel, 12"))
+    frame18.place(relx=0.9, rely=0.9, relwidth=0.15, relheight=0.1)
+
     lbi.pack()
 
-    bt1 = tkinter.Button(frame10, text="Active le système de nutition", command=proc1)
     bt1.pack()
 
-    bt2 = tkinter.Button(frame11, text="Active le système de surveillance", command=proc2)
     bt2.pack()
 
-    bt3 = tkinter.Button(frame12, text="Montrer la diffusion camera", command=proc3)
     bt3.pack()
 
-    bt4 = tkinter.Button(frame13, text="Envoyer des notifications", command=proc4)
     bt4.pack()
 
-    bt5 = tkinter.Button(frame14, text="Resumer de la journee", command=diagram)
     bt5.pack()
 
-    lbra = tkinter.Label(frame16, text="hi")
+    btback.pack()
 
     lbra.pack()
 
-    a_file = open("resume")
+def config1():
+    bt1.config(bg="red", command=return1)
 
-    res = a_file.readlines()
+def config2():
+    bt2.config(bg="red", command=return2)
 
-    print(res)
+def config3():
+    bt3.config(bg="red", command=return3)
 
-    lbra.config(text=res)
+def config4():
+    bt4.config(bg="red", command=return4)
+
+def return1():
+    bt1.config(bg="beige", command=proc1)
+
+    p1.terminate()
+    p1.join()
+
+def return2():
+    bt2.config(bg="beige", command=proc2)
+
+    p2.terminate()
+    p2.join()
+
+def return3():
+    bt3.config(bg="beige", command=proc3)
+
+    p3.terminate()
+    p3.join()
+
+def return4():
+    bt4.config(bg="beige", command=proc4)
+
+    p4.terminate()
+    p4.join()
 
 def arriere():
     page2.pack_forget()
-    endbt.config(text= "Terminer", command=avant)
     page1.pack()
 
 def feed():
@@ -223,9 +235,13 @@ def alert_status(compte, lifo):
 
 def diagram():
 
-    arriere()
+    a_file = open("resume")
 
-    avant()
+    res = a_file.readlines()
+
+    print(res)
+
+    lbra.config(text=res)
 
     patron1 = re.compile("1 ")
 
@@ -429,23 +445,22 @@ def diagram():
 #mutliprocess
 def proc1():
     if __name__ == '__main__':
-        p1 = Process(target=feed)
+        config1()
         p1.start()
 
 def proc2():
     if __name__ == '__main__':
-        p2 = Process(target=launch_alert, args=(compte, lifo))
+        config2()
         p2.start()
 
 def proc3():
     if __name__ == '__main__':
-        p3 = Process(target=stream)
+        config3()
         p3.start()
 
 def proc4():
     if __name__ == '__main__':
-        p4 = Process(target=alert_status, args=(compte, lifo))   
-
+        config4()
         p4.start()
 
 #-----------------------------------------------------------------------------------------------------
@@ -473,6 +488,15 @@ if __name__ == "__main__":
     mail = smtplib.SMTP('smtp.gmail.com',587)
 
     last_line = 0
+
+    p1 = Process(target=feed)
+
+    p2 = Process(target=launch_alert, args=(compte, lifo))
+
+    p3 = Process(target=stream)
+
+    p4 = Process(target=alert_status, args=(compte, lifo))   
+
 
 #---------------------------------------------------------------
     #pages
@@ -603,6 +627,39 @@ if __name__ == "__main__":
 #---------------------------------------------------------------
 
 #Page2
+    bg_label2 = tkinter.Label(page2, image=bg_img)
 
+    frame10 = tkinter.Frame(page2, bg="#69537d")
+
+    frame11 = tkinter.Frame(page2, bg="#69537d")
+
+    frame12 = tkinter.Frame(page2, bg="#69537d")
+
+    frame13 = tkinter.Frame(page2, bg="#69537d")
+
+    frame14 = tkinter.Frame(page2, bg="#69537d")
+
+    frame16 = tkinter.Frame(page2, bg="#69537d")
+
+    frame17 = tkinter.Frame(page2, bg="#69537d")
+
+    frame18 = tkinter.Frame(page2, bg="#69537d")
+
+    lbi = tkinter.Label(frame17, text="Bienvenue aux configurations de l'app." + "\n" + "Veillez choisir les systeme que vous voulez activer.", bg="beige")
+    lbi.config(font=("Ariel, 12"))
+
+    bt1 = tkinter.Button(frame10, text="Active le système de nutrition", bg="beige", command=proc1)
+  
+    bt2 = tkinter.Button(frame11, text="Active le système de surveillance", bg="beige", command=proc2)
+
+    bt3 = tkinter.Button(frame12, text="Montrer la diffusion camera", bg="beige", command=proc3)
+
+    bt4 = tkinter.Button(frame13, text="Envoyer des notifications", bg="beige", command=proc4)
+
+    bt5 = tkinter.Button(frame14, text="Resumer de la journee", bg="beige", command=diagram)
+    
+    btback = tkinter.Button(frame18, text="Arriere", bg="beige", command= arriere)
+
+    lbra = tkinter.Label(frame16, text="En attente de vos resultats...")
 
     root.mainloop()
