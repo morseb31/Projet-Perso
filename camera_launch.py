@@ -60,12 +60,40 @@ def comptage():
 
     return compte
 
+def statement():
+    with open('resume') as file:
+
+        for last_line in file:
+
+            pass
+    
+    print(last_line)
+
+    if last_line == "votre chien était triste":
+        state = "Triste"
+
+        return state 
+
+    if last_line == "votre chien est facher":
+        state = "Fâcher"
+
+        return state
+    
+    if last_line == "votre chien est entrain de dormir":
+        state = "Dort/Relaxe"
+
+        return state
+
+    else:
+        state="Ereur...Oops"
+
+        return state
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
 CHUNK = 262144
 RECORD_SECONDS = 5
-
 
 audio1 = pyaudio.PyAudio()
 
@@ -107,7 +135,7 @@ def audio():
 
 @app.route('/')
 def index():
-    return render_template('index.html', Compte=comptage()) 
+    return render_template('index.html', Compte=comptage(), State=statement()) 
 
 def gen(camera):
     #get camera frame

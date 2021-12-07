@@ -645,6 +645,8 @@ if __name__ == "__main__":
 
     frame18 = tkinter.Frame(page2, bg="#69537d")
 
+    frame19 = tkinter.Frame(page2, bg="#69537d")
+
     lbi = tkinter.Label(frame17, text="Bienvenue aux configurations de l'app." + "\n" + "Veillez choisir les systeme que vous voulez activer.", bg="beige")
     lbi.config(font=("Ariel, 12"))
 
@@ -659,6 +661,8 @@ if __name__ == "__main__":
     bt5 = tkinter.Button(frame14, text="Resumer de la journee", bg="beige", command=diagram)
     
     btback = tkinter.Button(frame18, text="Arriere", bg="beige", command= arriere)
+
+    lbras = tkinter.Frame(frame19, text='Résumer de la journée')
 
     lbra = tkinter.Label(frame16, text="En attente de vos resultats...")
 

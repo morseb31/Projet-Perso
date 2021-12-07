@@ -157,18 +157,35 @@ def sound_type():
 
     print(a)
 
-    test = float(0.17)
+    triste = float(0.17)
 
-    dif = test - a
+    relaxe = float(0.0)
+
+    dif = triste - a
+
+    dif2 = relaxe - a
 
     diff = int(dif)
 
+    diff2 = int(dif2)
+
     print(dif)
+
+    print(dif2)
 
     if -1 < diff < 1:
         print("lets go")
 
-        texte = "\n" + "À " + hour + " heure" + " votre chien était triste"
+        texte = "\n" + "À " + hour + " heure" + "\n" " votre chien était triste"
+
+        with open("resume","a") as f:
+            f.write(texte)
+            f.close
+    
+    if -1 < diff2 < 1:
+        print("lets go")
+
+        texte = "\n" + "À " + hour + " heure" + "\n" " votre chien est entrain de dormir"
 
         with open("resume","a") as f:
             f.write(texte)
