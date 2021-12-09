@@ -69,25 +69,9 @@ def statement():
     
     print(last_line)
 
-    if last_line == "votre chien était triste":
-        state = "Triste"
+    state = last_line
 
-        return state 
-
-    if last_line == "votre chien est facher":
-        state = "Fâcher"
-
-        return state
-    
-    if last_line == "votre chien est entrain de dormir":
-        state = "Dort/Relaxe"
-
-        return state
-
-    else:
-        state="Ereur...Oops"
-
-        return state
+    return state
 
 FORMAT = pyaudio.paInt16
 CHANNELS = 2

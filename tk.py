@@ -662,7 +662,7 @@ if __name__ == "__main__":
     
     btback = tkinter.Button(frame18, text="Arriere", bg="beige", command= arriere)
 
-    lbras = tkinter.Frame(frame19, text='Résumer de la journée')
+    lbras = tkinter.Label(frame19, text='Resumer de la journee')
 
     lbra = tkinter.Label(frame16, text="En attente de vos resultats...")
 
