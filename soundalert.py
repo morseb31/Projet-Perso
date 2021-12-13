@@ -170,15 +170,15 @@ def sound_type():
 
     dif3 = rage - a
 
-    diff = int(dif)
+    diff = float(dif)
 
-    diff2 = int(dif2)
+    diff2 = float(dif2)
 
-    diff3 = int(dif3)
+    diff3 = float(dif3)
 
-    c = int(float(-0.15))
+    c = float(-0.15)
 
-    d = int(float(0.15))
+    d = float(0.15)
 
     print(dif)
 
