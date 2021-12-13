@@ -73,8 +73,8 @@ def loop():
     print(str(dis) + 'cm' + '\n')
     time.sleep(0.3)
     if 0 < int(dis) < 15:
-        MotorCW(30)
-        MotorCCW(30)
+        MotorCW(60)
+        MotorCCW(60)
         time.sleep(0.005)
     else:
         time.sleep(0.005)

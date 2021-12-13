@@ -1,6 +1,6 @@
 from scipy.io.wavfile import read
 
-file = "DogCry.wav"
+file = "DogGrowl.wav"
 
 file2 = "DogSigh.wav"
 

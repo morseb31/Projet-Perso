@@ -7,6 +7,7 @@ from datetime import datetime
 from multiprocessing import *
 from queue import Empty, LifoQueue
 from multiprocessing.managers import BaseManager
+from numpy import int64
 from scipy.io.wavfile import read
 import pyaudio
 import wave
@@ -123,7 +124,7 @@ def rec_a(file):
 
     time.sleep(5)
 
-    min_val = 5000
+    min_val = 110
     
     fs, data = read(file)
     data_size = len(data)
@@ -157,40 +158,60 @@ def sound_type():
 
     print(a)
 
-    triste = float(0.17)
+    triste = float(0.42)
 
     relaxe = float(0.0)
+
+    rage = float(0.62)
 
     dif = triste - a
 
     dif2 = relaxe - a
 
+    dif3 = rage - a
+
     diff = int(dif)
 
     diff2 = int(dif2)
+
+    diff3 = int(dif3)
+
+    c = int(float(-0.15))
+
+    d = int(float(0.15))
 
     print(dif)
 
     print(dif2)
 
-    if -1 < diff < 1:
-        print("lets go")
+    print(dif3)
 
+    if c < diff < d:
+        print("sad")
         texte = "\n" + "À " + hour + " heure" + "\n" " votre chien était triste"
 
         with open("resume","a") as f:
             f.write(texte)
             f.close
     
-    if -1 < diff2 < 1:
-        print("lets go")
+    if c < diff2 < d:
+        print("sleep")
 
         texte = "\n" + "À " + hour + " heure" + "\n" " votre chien est entrain de dormir"
 
         with open("resume","a") as f:
             f.write(texte)
             f.close
-        
+    
+    if c < diff3 < d:
+        print("rage")
+
+        texte = "\n" + "À " + hour + " heure" + "\n" " votre chien rage"
+
+        with open("resume","a") as f:
+            f.write(texte)
+            f.close
+
     else:
         print("nada")
 
