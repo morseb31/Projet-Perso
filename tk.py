@@ -178,7 +178,7 @@ def Message():
     mail.ehlo()
     mail.starttls()
     mail.login('raspicodeuser123@gmail.com', 'eczvylxwcdzxorkq')
-    mail.sendmail('raspicodeuser123@gmail.com',user_mail,content)
+    mail.sendmail('raspicodeuser123@gmail.com',messaging_status)
     mail.close()
 
 def stream():
@@ -497,7 +497,7 @@ if __name__ == "__main__":
 
     p4 = Process(target=alert_status, args=(compte, lifo))   
 
-
+    messaging_status = "Votre animal semble avoir depasser votre objectif de breuits. Veuiller verifier la diffusion en direct pour assurer sa seurite."
 #---------------------------------------------------------------
     #pages
     page1 = tkinter.Frame(root)
