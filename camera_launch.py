@@ -8,6 +8,7 @@ import pyaudio
 import struct
 import RPi.GPIO as GPIO
 import time
+import os
 
 servo = 8
 
@@ -137,6 +138,13 @@ def video_feed():
 def SomeFunction():
     run()
     return "Nothing"
+
+@app.route('/mes1')
+def mes1():
+    print("hi")
+    os.system("mpg321 DogGrowl.wav &")
+    
+
 
 if __name__ == '__main__':
 

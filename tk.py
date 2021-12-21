@@ -174,11 +174,10 @@ def feed():
             launch_motor()
 
 def Message():
-    user_mail = e3.get()
     mail.ehlo()
     mail.starttls()
     mail.login('raspicodeuser123@gmail.com', 'eczvylxwcdzxorkq')
-    mail.sendmail('raspicodeuser123@gmail.com',messaging_status)
+    mail.sendmail(from_addr="raspicodeuser123@gmail.com",to_addrs=e3.get(), msg="Bonjour " + e1.get() + " " + e2.get() + " semble avoir depasser votre objectif de bruits. Veuiller verifier la diffusion en direct pour assurer sa securite.")
     mail.close()
 
 def stream():
@@ -497,7 +496,7 @@ if __name__ == "__main__":
 
     p4 = Process(target=alert_status, args=(compte, lifo))   
 
-    messaging_status = "Votre animal semble avoir depasser votre objectif de breuits. Veuiller verifier la diffusion en direct pour assurer sa seurite."
+    
 #---------------------------------------------------------------
     #pages
     page1 = tkinter.Frame(root)
@@ -598,6 +597,7 @@ if __name__ == "__main__":
 
     e3 = tkinter.Entry(frame4)
     e3.pack()
+
 #---------------------------------------------------------------
     #combobox
 
